@@ -1,5 +1,5 @@
 import { Exclude, instanceToPlain } from 'class-transformer';
-import { Entity, Column, PrimaryGeneratedColumn, Timestamp, Unique } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, Timestamp } from 'typeorm';
 
 @Entity()
 export class CpfBlacklist {

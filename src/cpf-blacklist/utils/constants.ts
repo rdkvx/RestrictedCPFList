@@ -30,5 +30,8 @@ export let utilsCpfBlacklist = {
     invalidCpfException,
     cpfAlreadyExistsErr,
     invalidCepErr,
-    notFoundCepErr
+    notFoundCepErr,
+    cpfIsNotValid,
+    cpfAlreadyExists,
+    notFoundCep
 }

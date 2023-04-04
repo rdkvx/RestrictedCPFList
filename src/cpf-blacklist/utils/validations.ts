@@ -1,6 +1,4 @@
-import { HttpException, HttpStatus } from "@nestjs/common";
-import { CreateCpfBlacklistDto } from "../dto/create-cpf-blacklist.dto";
-import { Repository } from 'typeorm/repository/Repository';
+import { HttpStatus } from "@nestjs/common";
 import { cpfException } from "../exceptions/cpfExceptions";
 import { utilsCpfBlacklist } from "./constants";
 
@@ -14,6 +12,7 @@ const validaNumeroRepetido = (cpf: string)=>{
     const regexRepetedNumbers = /([0-9])\1+/;
     
     if(cpf.length != 11 || regexRepetedNumbers.test(cpf)){
+        console.log(`failed to validate cpf ${cpf}: ${utilsCpfBlacklist.cpfIsNotValid}`)
         throw new cpfException(utilsCpfBlacklist.invalidCepErr, HttpStatus.BAD_REQUEST)
     }
 }
@@ -22,6 +21,7 @@ const validaApenasNumero = (cpf: string)=>{
     const regexApenasNumeros = /^[0-9]+$/;
 
     if(!regexApenasNumeros.test(cpf)){
+        console.log(`failed to validate cpf ${cpf}: ${utilsCpfBlacklist.cpfIsNotValid}`)
         throw new cpfException(utilsCpfBlacklist.invalidCepErr, HttpStatus.BAD_REQUEST)
     }
 }

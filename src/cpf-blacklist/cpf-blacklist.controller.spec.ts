@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CpfBlacklistController } from './cpf.controller';
-import { CpfBlacklistService } from './cpf.service';
+import { CpfBlacklistController } from './cpf-blacklist.controller';
+import { CpfBlacklistService } from './cpf-blacklist.service';
 
 describe('CpfBlacklistController', () => {
   let controller: CpfBlacklistController;

@@ -1,7 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { CpfBlacklistService } from './cpf-blacklist.service';
 import { CreateCpfBlacklistDto } from './dto/create-cpf-blacklist.dto';
-import { UpdateCpfBlacklistDto } from './dto/update-cpf-blacklist.dto';
 
 @Controller('cpf')
 export class CpfBlacklistController {
