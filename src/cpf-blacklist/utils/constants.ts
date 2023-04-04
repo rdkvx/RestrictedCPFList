@@ -9,8 +9,8 @@ const   repository = 'ENDERECO_REPOSITORY',
         notFoundCep = 'CPF not found.'
 
 const cpfAlreadyExistsErr = {
-        "type" : existsCpfException,
-        "message" : cpfAlreadyExists
+    "type" : existsCpfException,
+    "message" : cpfAlreadyExists
 }
 
 const invalidCepErr = {
