@@ -1,10 +1,12 @@
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { CreateCpfBlacklistDto } from './dto/create-cpf-blacklist.dto';
 import { UpdateCpfBlacklistDto } from './dto/update-cpf-blacklist.dto';
 import { utilsCpfBlacklist } from './utils/constants';
 import { CpfBlacklist } from './entities/cpf-blacklist.entity';
 import { Repository } from 'typeorm/repository/Repository';
 import { validations } from './utils/validations';
+import { error } from 'console';
+import { cpfException } from './exceptions/cpfExceptions';
 
 @Injectable()
 export class CpfBlacklistService {
@@ -14,15 +16,15 @@ export class CpfBlacklistService {
   ) {}
   
   async create(createCpfBlacklistDto: CreateCpfBlacklistDto) {
-    if(validations.cpfValidations(createCpfBlacklistDto)){
+    if(validations.cpfValidations(createCpfBlacklistDto.cpf)){
       try{
         const res = await this.cpfBlacklistRepository.save(createCpfBlacklistDto)
         console.log(`cpf ${res.cpf} inserted successfully`)
         return res
 
-      }catch{
+      }catch{ (error)
         console.log(`failed to insert cpf ${createCpfBlacklistDto.cpf}`)
-        throw new HttpException("ExistsCpfException", HttpStatus.BAD_REQUEST)
+        throw new cpfException(utilsCpfBlacklist.cpfAlreadyExistsErr, HttpStatus.BAD_REQUEST)
       }
     }
   }
@@ -30,7 +32,6 @@ export class CpfBlacklistService {
   async findAll() {
     try{
       const res = await this.cpfBlacklistRepository.find();
-
       return res;
     }catch{
       throw new HttpException(utilsCpfBlacklist.erroInterno, HttpStatus.INTERNAL_SERVER_ERROR)
@@ -38,22 +39,26 @@ export class CpfBlacklistService {
   }
 
   async findOne(cpf: string) {
-    const res = await this.cpfBlacklistRepository.findOne({ where: { cpf } });
+    if(validations.cpfValidations(cpf)){
+      const res = await this.cpfBlacklistRepository.findOne({ where: { cpf } });
 
-    if(res == null){
-      throw new HttpException(utilsCpfBlacklist.erroInterno, HttpStatus.INTERNAL_SERVER_ERROR)
+      if(res == null){
+        throw new cpfException(utilsCpfBlacklist.notFoundCepErr, HttpStatus.NOT_FOUND)
+      }
+
+      return res;
     }
-
-    return res;
   }
 
   async remove(cpf: string) {
-    const res = await this.cpfBlacklistRepository.delete({cpf: cpf});
+    if(validations.cpfValidations(cpf)){
+      const res = await this.cpfBlacklistRepository.delete({cpf: cpf});
 
-    if(res.affected == 0){
-      throw new HttpException(utilsCpfBlacklist.erroInterno, HttpStatus.INTERNAL_SERVER_ERROR)
+      if(res.affected == 0){
+        throw new cpfException(utilsCpfBlacklist.notFoundCepErr, HttpStatus.NOT_FOUND)
+      }
+
+      return res;
     }
-
-    return res;
   }
 }

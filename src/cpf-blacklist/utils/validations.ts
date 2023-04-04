@@ -1,32 +1,29 @@
 import { HttpException, HttpStatus } from "@nestjs/common";
 import { CreateCpfBlacklistDto } from "../dto/create-cpf-blacklist.dto";
 import { Repository } from 'typeorm/repository/Repository';
+import { cpfException } from "../exceptions/cpfExceptions";
+import { utilsCpfBlacklist } from "./constants";
 
-const cpfValidations = (createCpfBlacklistDto: CreateCpfBlacklistDto)=>{
-    validaApenasNumero(createCpfBlacklistDto);
-    validaNumeroRetido(createCpfBlacklistDto);
-
+const cpfValidations = (cpf: string)=>{
+    validaApenasNumero(cpf);
+    validaNumeroRepetido(cpf);
     return true
 }
 
-const validaNumeroRetido = (createCpfBlacklistDto: CreateCpfBlacklistDto)=>{
+const validaNumeroRepetido = (cpf: string)=>{
     const regexRepetedNumbers = /([0-9])\1+/;
     
-    if(createCpfBlacklistDto.cpf.length != 11 || regexRepetedNumbers.test(createCpfBlacklistDto.cpf)){
-        throw new HttpException("InvalidCpfException", HttpStatus.BAD_REQUEST)
+    if(cpf.length != 11 || regexRepetedNumbers.test(cpf)){
+        throw new cpfException(utilsCpfBlacklist.invalidCepErr, HttpStatus.BAD_REQUEST)
     }
 }
 
-const validaApenasNumero = (createCpfBlacklistDto: CreateCpfBlacklistDto)=>{
+const validaApenasNumero = (cpf: string)=>{
     const regexApenasNumeros = /^[0-9]+$/;
 
-    if(!regexApenasNumeros.test(createCpfBlacklistDto.cpf)){
-        throw new HttpException("InvalidCpfException", HttpStatus.BAD_REQUEST)
+    if(!regexApenasNumeros.test(cpf)){
+        throw new cpfException(utilsCpfBlacklist.invalidCepErr, HttpStatus.BAD_REQUEST)
     }
-}
-
-const validaCpfExistente = (createCpfBlacklistDto: CreateCpfBlacklistDto)=>{
-    
 }
 
 export let validations = {
