@@ -6,6 +6,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // implementação do swagger
   const config = new DocumentBuilder()
     .setTitle(utilsSwagger.title)
     .setDescription(utilsSwagger.description)

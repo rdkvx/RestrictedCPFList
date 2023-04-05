@@ -17,10 +17,10 @@ tão longo, preferi usar algo que já domino e venho usando, apenas para ganhar 
 ## Rodando a aplicação
 
 ```bash
-# building the database
-$ abra o script docker-compose.yml e então clique com o botão direito do mouse e então em compose up.
+# building a base de dados
+$ abra o script docker-compose.yml e então clique com o botão direito do mouse e então em compose up. (O docker precisa estar instalado)
 
-# loading environment variable
+# carregando as variaveis de ambiente necessárias para rodar o projeto
 $ abra o terminal e escreva o comando "source .env"
 
 # rodando o projeto
@@ -43,6 +43,10 @@ $ Remove CPF(DELETE) - localhost:3000/cpf/${cpf}
 
 ## Test
 ```bash
-# teste unitario
+# localização do teste script de teste unitario
+$ Os testes unitarios estão no script cpf-blacklist.service.spec.ts
+
+# rodando os testes
 $ npm run test:watch src/cpf-blacklist/cpf-blacklist.service.spec.ts
+
 ```

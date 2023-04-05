@@ -17,6 +17,7 @@ export class CpfBlacklist {
         return instanceToPlain(this)
     }
 
+    // construtor com parametros opcionais(utilizado para mockar dados)
     constructor(cpfBlackList? : Partial<CpfBlacklist>){
         this.id = cpfBlackList?.id;
         this.cpf = cpfBlackList?.cpf;
