@@ -16,4 +16,10 @@ export class CpfBlacklist {
     toJSON() {
         return instanceToPlain(this)
     }
+
+    constructor(cpfBlackList? : Partial<CpfBlacklist>){
+        this.id = cpfBlackList?.id;
+        this.cpf = cpfBlackList?.cpf;
+        this.createdAt = cpfBlackList?.createdAt;
+    }
 }
