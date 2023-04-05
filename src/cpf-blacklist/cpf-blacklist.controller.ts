@@ -7,22 +7,22 @@ export class CpfBlacklistController {
   constructor(private readonly cpfBlacklistService: CpfBlacklistService) {}
 
   @Post()
-  create(@Body() createCpfBlacklistDto: CreateCpfBlacklistDto) {
+  addCPF(@Body() createCpfBlacklistDto: CreateCpfBlacklistDto) {
     return this.cpfBlacklistService.create(createCpfBlacklistDto);
   }
 
   @Get()
-  findAll() {
+  findAllCPFs() {
     return this.cpfBlacklistService.findAll();
   }
 
   @Get(':cpf')
-  findOne(@Param('cpf') cpf: string) {
+  checkCPF(@Param('cpf') cpf: string) {
     return this.cpfBlacklistService.findOne(cpf);
   }
 
   @Delete(':cpf')
-  remove(@Param('cpf') cpf: string) {
+  removeCPF(@Param('cpf') cpf: string) {
     return this.cpfBlacklistService.remove(cpf);
   }
 }

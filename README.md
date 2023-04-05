@@ -1,21 +1,43 @@
 ## Description
 
-Max Milhas Backend Tech Challenge
+Desafio Tecnico Backend Max Milhas
+
+O desafio foi desenvolvido utilizando Ubuntu, NodeJS, NestJS, Typescript, Swagger e MySQL dockerizado.
+
+Utilizei algumas das boas práticas de desenvolvimento, seguindo principios de clean code,
+separando as responsabilidades, dando nomes claros de variáveis e funções além do uso de 
+variáveis de ambiente, para não expor informações sensíveis da aplicação, como informações
+para acessar o banco de dados.
+
+Eu poderia ter escrito o código em Java Springboot sem problemas, visto que a vaga é para Java,
+porém a escolha do Node como linguagem e Nest como framework foi feita por familiaridade
+com a tecnologia, pois venho utilizando em projetos recentes. Como o tempo do desafio não é
+tão longo, preferi usar algo que já domino e venho usando, apenas para ganhar tempo.
 
 ## Running the app
 
 ```bash
 # building the database
-$ open the script docker-compose.yml and then click with the mouse right button and then, at compose up.
+$ abra o script docker-compose.yml e então clique com o botão direito do mouse e então em compose up.
 
 # loading environment variable
-$ open the terminal and then write the command "source .env"
+$ abra o terminal e escreva o comando "source .env"
 
-# development
+# rodando o projeto
 $ npm run start
 
-# watch mode
-$ npm run start:dev
+# abrindo a doc
+$ localhost:3000/docs
+
+# acessando a API
+$ localhost:3000/cpf
+
+# rotas
+$ Add CPF(POST) - localhost:3000/cpf - Data Params { "cpf": "64852893055" }
+$ Find All CPFs(GET) -  localhost:3000/cpf
+$ Check CPF(GET) - localhost:3000/cpf/${cpf}
+$ Remove CPF(DELETE) - localhost:3000/cpf/${cpf}
+
 ```
 
 ## Test

@@ -60,7 +60,7 @@ export class CpfBlacklistService {
         console.log(`failed to remove cpf ${cpf} from the blacklist`)
         throw new cpfException(utilsCpfBlacklist.notFoundCepErr, HttpStatus.NOT_FOUND)
       }
-      console.log(`cpf ${cpf} has been removed successfully from the blacklist`)
+      console.log(`cpf ${cpf} has been removed successfully from the blacklist`)      
       return res;
     }
   }
