@@ -14,7 +14,7 @@ porém a escolha do Node como linguagem e Nest como framework foi feita por fami
 com a tecnologia, pois venho utilizando em projetos recentes. Como o tempo do desafio não é
 tão longo, preferi usar algo que já domino e venho usando, apenas para ganhar tempo.
 
-## Running the app
+## Rodando a aplicação
 
 ```bash
 # building the database
@@ -31,21 +31,21 @@ $ localhost:3000/docs
 
 # acessando a API
 $ localhost:3000/cpf
+```
 
-# rotas
+## Rotas
+```bash
 $ Add CPF(POST) - localhost:3000/cpf - Data Params { "cpf": "64852893055" }
 $ Find All CPFs(GET) -  localhost:3000/cpf
 $ Check CPF(GET) - localhost:3000/cpf/${cpf}
 $ Remove CPF(DELETE) - localhost:3000/cpf/${cpf}
-
 ```
 
 ## Test
-
 ```bash
-# unit tests
+# teste unitario
 $ npm run test
 
-# test coverage
+# cobertura dos testes
 $ npm run test:cov
 ```
