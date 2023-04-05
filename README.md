@@ -44,8 +44,5 @@ $ Remove CPF(DELETE) - localhost:3000/cpf/${cpf}
 ## Test
 ```bash
 # teste unitario
-$ npm run test
-
-# cobertura dos testes
-$ npm run test:cov
+$ npm run test:watch src/cpf-blacklist/cpf-blacklist.service.spec.ts
 ```
